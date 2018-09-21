@@ -11,6 +11,11 @@ if __name__ == '__main__':
     bf = BeautifulSoup(html)
     aList = bf.find_all('a', class_='titlelnk') #抓取文章标题
     index = 0
-    for a in aList:
-        print( str(index)+'-' +a.text)
-        index += 1
+    with open('F:/test.txt', 'a', encoding='utf-8') as f:
+        for a in aList:
+            print( str(index)+'-' +a.text)
+            f.writelines(a.text)
+            f.write('\n')
+            f.writelines(a.get('href'))
+            f.write('\n\n')
+            index += 1
